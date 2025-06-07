@@ -1,7 +1,10 @@
 name: avlcweb
 description: "AvlcWeb Sign in with whatsapp"
 version: 0.0.1
-homepage: "Avlcweb Sign in with whatsapp"
+homepage: https://github.com/Shvet/avlc_web
+repository: https://github.com/Shvet/avlc_web
+issue_tracker: https://github.com/Shvet/avlc_web/issues
+documentation: https://github.com/Shvet/avlc_web#readme
 
 environment:
   sdk: '>=3.4.3 <4.0.0'
