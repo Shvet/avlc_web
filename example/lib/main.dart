@@ -17,11 +17,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   String _platformVersion = 'Unknown';
-  final _avlcwebPlugin = AvlcWeb(
-    email: "test123@gmail.com",
-    password: "Test@123",
-    onInitialize: (isInitialized, {error}) {},
-  );
+  final _avlcwebPlugin = AvlcWeb();
 
   @override
   void initState() {
@@ -36,6 +32,11 @@ class _MyAppState extends State<MyApp> {
     // We also handle the message potentially returning null.
     try {
       platformVersion = await _avlcwebPlugin.getPlatformVersion() ?? 'Unknown platform version';
+      _avlcwebPlugin.initialize(
+        email: "test123@gmail.com",
+        password: "Test@123",
+        onInitialize: (isInitialized, {error}) {},
+      );
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }

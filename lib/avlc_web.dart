@@ -5,15 +5,18 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AvlcWeb {
   late SharedPreferences preferences;
   late String email, password;
-  Function(bool isInitialized, {String? error}) onInitialize;
+  late Function(bool isInitialized, {String? error}) onInitialize;
   final ApiHelper apiHelper = ApiHelper();
 
-  AvlcWeb({
-    required this.email,
-    required this.password,
-    required this.onInitialize,
+  void initialize({
+    required String email,
+    required String password,
+    required Function(bool isInitialized, {String? error}) onInitialize,
   }) {
-    loginUser();
+    this.email = email;
+    this.password = password;
+    this.onInitialize = onInitialize;
+    _loginUser();
   }
 
   Future<String?> getPlatformVersion() {
@@ -23,7 +26,7 @@ class AvlcWeb {
   /// Login user
   /// @param email
   /// @param password
-  Future<void> loginUser() async {
+  Future<void> _loginUser() async {
     preferences = await SharedPreferences.getInstance();
     Map<String, dynamic> data = {"email": email, "password": password};
     final result = await apiHelper.loginUser(data);

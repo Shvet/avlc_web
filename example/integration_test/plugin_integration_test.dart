@@ -14,7 +14,8 @@ void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   testWidgets('getPlatformVersion test', (WidgetTester tester) async {
-    final AvlcWeb plugin = AvlcWeb(
+    final AvlcWeb plugin = AvlcWeb();
+    plugin.initialize(
       email: "test123@gmail.com",
       password: "Test@123",
       onInitialize: (isInitialized, {error}) {},

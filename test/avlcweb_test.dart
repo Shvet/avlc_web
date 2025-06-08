@@ -17,7 +17,8 @@ void main() {
   });
 
   test('getPlatformVersion', () async {
-    AvlcWeb avlcwebPlugin = AvlcWeb(
+    AvlcWeb avlcwebPlugin = AvlcWeb();
+    avlcwebPlugin.initialize(
       email: "",
       password: "",
       onInitialize: (isInitialized, {error}) {},
