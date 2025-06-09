@@ -19,8 +19,8 @@ void main() {
   test('getPlatformVersion', () async {
     AvlcWeb avlcwebPlugin = AvlcWeb();
     avlcwebPlugin.initialize(
-      email: "",
-      password: "",
+      appId: "",
+      appSecret: "",
       onInitialize: (isInitialized, {error}) {},
     );
     MockAvlcwebPlatform fakePlatform = MockAvlcwebPlatform();

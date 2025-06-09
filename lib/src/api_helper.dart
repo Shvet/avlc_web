@@ -15,11 +15,11 @@ class ApiHelper {
       } else if (result.statusCode == 401) {
         return json.decode(result.body);
       } else {
-        return {"success": false, "message": "Something went wrong"};
+        return {"success": false, "message": "Something went wrong", "status": result.statusCode};
       }
     } catch (e) {
       print(e);
-      return {"success": false, "message": "Something went wrong"};
+      return {"success": false, "message": "Something went wrong", "status": 400};
     }
   }
 
@@ -43,11 +43,11 @@ class ApiHelper {
       } else if (result.statusCode == 401) {
         return json.decode(result.body);
       } else {
-        return {"success": false, "message": "Something went wrong"};
+        return {"success": false, "message": "Something went wrong", "status": result.statusCode};
       }
     } catch (e) {
       print(e);
-      return {"success": false, "message": "Something went wrong"};
+      return {"success": false, "message": "Something went wrong", "status": 400};
     }
   }
 
@@ -71,11 +71,11 @@ class ApiHelper {
       } else if (result.statusCode == 401) {
         return json.decode(result.body);
       } else {
-        return {"success": false, "message": "Something went wrong"};
+        return {"success": false, "message": "Something went wrong", "status": result.statusCode};
       }
     } catch (e) {
       print(e);
-      return {"success": false, "message": "Something went wrong"};
+      return {"success": false, "message": "Something went wrong", "status": 400};
     }
   }
 }

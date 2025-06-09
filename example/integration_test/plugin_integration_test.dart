@@ -16,8 +16,8 @@ void main() {
   testWidgets('getPlatformVersion test', (WidgetTester tester) async {
     final AvlcWeb plugin = AvlcWeb();
     plugin.initialize(
-      email: "test123@gmail.com",
-      password: "Test@123",
+      appId: "your_app_id",
+      appSecret: "app_secret",
       onInitialize: (isInitialized, {error}) {},
     );
     final String? version = await plugin.getPlatformVersion();

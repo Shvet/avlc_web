@@ -33,8 +33,8 @@ class _MyAppState extends State<MyApp> {
     try {
       platformVersion = await _avlcwebPlugin.getPlatformVersion() ?? 'Unknown platform version';
       _avlcwebPlugin.initialize(
-        email: "test123@gmail.com",
-        password: "Test@123",
+        appId: "your_app_id",
+        appSecret: "your_app_secret",
         onInitialize: (isInitialized, {error}) {},
       );
     } on PlatformException {
@@ -56,7 +56,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Plugin example app'),
+          title: const Text('AVLCWeb'),
         ),
         body: Center(
           child: Text('Running on: $_platformVersion\n'),
