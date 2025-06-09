@@ -8,7 +8,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 class ApiHelper {
   Future<dynamic> loginUser(Map<String, dynamic> data) async {
     try {
-      final result = await post(Uri.parse("${baseUrl}user-login"), body: json.encode(data));
+      final result = await post(Uri.parse("${baseUrl}user-login"),
+          body: json.encode(data));
       if (result.statusCode == 200) {
         return json.decode(result.body);
       } else if (result.statusCode == 400) {
@@ -16,11 +17,19 @@ class ApiHelper {
       } else if (result.statusCode == 401) {
         return json.decode(result.body);
       } else {
-        return {"success": false, "message": "Something went wrong", "status": result.statusCode};
+        return {
+          "success": false,
+          "message": "Something went wrong",
+          "status": result.statusCode
+        };
       }
     } catch (e) {
       print(e);
-      return {"success": false, "message": "Something went wrong", "status": 400};
+      return {
+        "success": false,
+        "message": "Something went wrong",
+        "status": 400
+      };
     }
   }
 
@@ -49,11 +58,19 @@ class ApiHelper {
         return json.decode(result.body);
       } else {
         log("AVLCWeb: Sending OTP Failed");
-        return {"success": false, "message": "Something went wrong", "status": result.statusCode};
+        return {
+          "success": false,
+          "message": "Something went wrong",
+          "status": result.statusCode
+        };
       }
     } catch (e) {
       log("AVLCWeb: $e");
-      return {"success": false, "message": "Something went wrong", "status": 400};
+      return {
+        "success": false,
+        "message": "Something went wrong",
+        "status": 400
+      };
     }
   }
 
@@ -82,11 +99,19 @@ class ApiHelper {
         return json.decode(result.body);
       } else {
         log("AVLCWeb: Sending OTP Failed");
-        return {"success": false, "message": "Something went wrong", "status": result.statusCode};
+        return {
+          "success": false,
+          "message": "Something went wrong",
+          "status": result.statusCode
+        };
       }
     } catch (e) {
       log("AVLCWeb: $e");
-      return {"success": false, "message": "Something went wrong", "status": 400};
+      return {
+        "success": false,
+        "message": "Something went wrong",
+        "status": 400
+      };
     }
   }
 }
