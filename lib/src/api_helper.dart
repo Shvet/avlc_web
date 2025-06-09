@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:avlcweb/src/constant.dart';
 import 'package:http/http.dart';
@@ -25,6 +26,7 @@ class ApiHelper {
 
   Future<dynamic> sendOtp(Map<String, dynamic> data) async {
     try {
+      log("AVLCWeb: Sending OTP....");
       final preference = await SharedPreferences.getInstance();
 
       final result = await post(
@@ -37,22 +39,27 @@ class ApiHelper {
         },
       );
       if (result.statusCode == 200) {
+        log("AVLCWeb: Sending OTP Success");
         return json.decode(result.body);
       } else if (result.statusCode == 400) {
+        log("AVLCWeb: Sending OTP Failed");
         return json.decode(result.body);
       } else if (result.statusCode == 401) {
+        log("AVLCWeb: Sending OTP Failed");
         return json.decode(result.body);
       } else {
+        log("AVLCWeb: Sending OTP Failed");
         return {"success": false, "message": "Something went wrong", "status": result.statusCode};
       }
     } catch (e) {
-      print(e);
+      log("AVLCWeb: $e");
       return {"success": false, "message": "Something went wrong", "status": 400};
     }
   }
 
   Future<dynamic> verifyOtp(Map<String, dynamic> data) async {
     try {
+      log("AVLCWeb: Verifying OTP...");
       final preference = await SharedPreferences.getInstance();
 
       final result = await post(
@@ -65,16 +72,20 @@ class ApiHelper {
         },
       );
       if (result.statusCode == 200) {
+        log("AVLCWeb: Sending OTP Success");
         return json.decode(result.body);
       } else if (result.statusCode == 400) {
+        log("AVLCWeb: Sending OTP Failed");
         return json.decode(result.body);
       } else if (result.statusCode == 401) {
+        log("AVLCWeb: Sending OTP Failed");
         return json.decode(result.body);
       } else {
+        log("AVLCWeb: Sending OTP Failed");
         return {"success": false, "message": "Something went wrong", "status": result.statusCode};
       }
     } catch (e) {
-      print(e);
+      log("AVLCWeb: $e");
       return {"success": false, "message": "Something went wrong", "status": 400};
     }
   }
