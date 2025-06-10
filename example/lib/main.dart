@@ -18,6 +18,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   String _platformVersion = 'Unknown';
   final _avlcwebPlugin = AvlcWeb();
+  TextEditingController phoneNumberController = TextEditingController();
+  TextEditingController otpController = TextEditingController();
 
   @override
   void initState() {
@@ -31,8 +33,7 @@ class _MyAppState extends State<MyApp> {
     // Platform messages may fail, so we use a try/catch PlatformException.
     // We also handle the message potentially returning null.
     try {
-      platformVersion = await _avlcwebPlugin.getPlatformVersion() ??
-          'Unknown platform version';
+      platformVersion = await _avlcwebPlugin.getPlatformVersion() ?? 'Unknown platform version';
       _avlcwebPlugin.initialize(
         appId: "your_app_id",
         appSecret: "your_app_secret",
@@ -59,8 +60,50 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('AVLCWeb'),
         ),
-        body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+        body: Column(
+          children: [
+            Center(
+              child: Text('Running on: $_platformVersion\n'),
+            ),
+            TextFormField(
+              controller: phoneNumberController,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: "Enter Phone Number",
+                enabled: true,
+                enabledBorder: OutlineInputBorder(),
+                filled: false,
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                _avlcwebPlugin.sendOtp({"phone": phoneNumberController.text}, (p0) {});
+              },
+              child: const Text("Send Otp!"),
+            ),
+            const SizedBox(
+              height: 50,
+            ),
+            TextFormField(
+              controller: otpController,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: "Enter OTP",
+                enabled: true,
+                enabledBorder: OutlineInputBorder(),
+                filled: false,
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                _avlcwebPlugin.verifyOtp({
+                  "phone": phoneNumberController.text,
+                  "otp": otpController.text,
+                }, (p0) {});
+              },
+              child: const Text("Verify Otp!"),
+            ),
+          ],
         ),
       ),
     );

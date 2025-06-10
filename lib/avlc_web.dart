@@ -33,12 +33,12 @@ class AvlcWeb {
     preferences = await SharedPreferences.getInstance();
     Map<String, dynamic> data = {"app_id": appId, "app_secret": appSecret};
     final result = await apiHelper.loginUser(data);
+    log("${result}");
     if (result != null) {
-      if (result['status'] == 200) {
+      if (result['success'] == true) {
         preferences.setString("access_token", result['access_token']);
-        preferences.setString("refresh_token", result['refresh_token']);
         onInitialize(true);
-      } else if (result['status'] == 400) {
+      } else if (result['success'] == false) {
         onInitialize(false, error: result['message']);
       }
     }
@@ -64,8 +64,7 @@ class AvlcWeb {
   /// verify otp
   /// @param data, data should be like this {"email":"adminton@gmail.com","otp":"123456"} or {"phone":"+91123456789","otp":"123456"}
   /// @param response
-  Future<void> verifyOtp(
-      Map<String, dynamic> data, Function(dynamic) response) async {
+  Future<void> verifyOtp(Map<String, dynamic> data, Function(dynamic) response) async {
     final result = await apiHelper.sendOtp(data);
     if (result != null) {
       if (result['success'] == true) {
