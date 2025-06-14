@@ -20,19 +20,11 @@ class ApiHelper {
       } else if (result.statusCode == 401) {
         return json.decode(result.body);
       } else {
-        return {
-          "success": false,
-          "message": "Something went wrong",
-          "status": result.statusCode
-        };
+        return {"success": false, "message": "Something went wrong", "status": result.statusCode};
       }
     } catch (e) {
       print(e);
-      return {
-        "success": false,
-        "message": "Something went wrong",
-        "status": 400
-      };
+      return {"success": false, "message": "Something went wrong", "status": 400};
     }
   }
 
@@ -41,7 +33,7 @@ class ApiHelper {
       final preference = await SharedPreferences.getInstance();
       log("AVLCWeb: Sending OTP.... ${preference.getString('access_token')}");
       final result = await post(
-        Uri.parse("${baseUrl}verify-otp"),
+        Uri.parse("${baseUrl}send-otp"),
         body: json.encode(data),
         headers: {
           "Content-Type": "application/json",
@@ -61,19 +53,11 @@ class ApiHelper {
         return json.decode(result.body);
       } else {
         log("AVLCWeb: Sending OTP Failed");
-        return {
-          "success": false,
-          "message": "Something went wrong",
-          "status": result.statusCode
-        };
+        return {"success": false, "message": "Something went wrong", "status": result.statusCode};
       }
     } catch (e) {
       log("AVLCWeb: $e");
-      return {
-        "success": false,
-        "message": "Something went wrong",
-        "status": 400
-      };
+      return {"success": false, "message": "Something went wrong", "status": 400};
     }
   }
 
@@ -102,19 +86,11 @@ class ApiHelper {
         return json.decode(result.body);
       } else {
         log("AVLCWeb: Sending OTP Failed");
-        return {
-          "success": false,
-          "message": "Something went wrong",
-          "status": result.statusCode
-        };
+        return {"success": false, "message": "Something went wrong", "status": result.statusCode};
       }
     } catch (e) {
       log("AVLCWeb: $e");
-      return {
-        "success": false,
-        "message": "Something went wrong",
-        "status": 400
-      };
+      return {"success": false, "message": "Something went wrong", "status": 400};
     }
   }
 }

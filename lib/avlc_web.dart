@@ -53,26 +53,17 @@ class AvlcWeb {
   ) async {
     final result = await apiHelper.sendOtp(data);
     if (result != null) {
-      if (result['success'] == true) {
-        response(result);
-      } else if (result['success'] == false) {
-        response(result);
-      }
+      response(result);
     }
   }
 
   /// verify otp
   /// @param data, data should be like this {"email":"adminton@gmail.com","otp":"123456"} or {"phone":"+91123456789","otp":"123456"}
   /// @param response
-  Future<void> verifyOtp(
-      Map<String, dynamic> data, Function(dynamic) response) async {
-    final result = await apiHelper.sendOtp(data);
+  Future<void> verifyOtp(Map<String, dynamic> data, Function(dynamic) response) async {
+    final result = await apiHelper.verifyOtp(data);
     if (result != null) {
-      if (result['success'] == true) {
-        response(result);
-      } else if (result['success'] == false) {
-        response(result);
-      }
+      response(result);
     }
   }
 }
