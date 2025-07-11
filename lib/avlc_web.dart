@@ -60,9 +60,17 @@ class AvlcWeb {
   /// verify otp
   /// @param data, data should be like this {"email":"adminton@gmail.com","otp":"123456"} or {"phone":"+91123456789","otp":"123456"}
   /// @param response
-  Future<void> verifyOtp(
-      Map<String, dynamic> data, Function(dynamic) response) async {
+  Future<void> verifyOtp(Map<String, dynamic> data, Function(dynamic) response) async {
     final result = await apiHelper.verifyOtp(data);
+    if (result != null) {
+      response(result);
+    }
+  }
+
+  /// verify otp
+  /// @param data, data should be like this {"email":"adminton@gmail.com","otp":"123456"}
+  Future<void> verifyFirebaseOtp(Map<String, dynamic> data, Function(dynamic) response) async {
+    final result = await apiHelper.verifyFirebaseOtp(data);
     if (result != null) {
       response(result);
     }
